@@ -1,0 +1,374 @@
+@use "../global" as g;
+
+$_small-radius: g.func-rem(4);
+$_small-padding: g.func-rem(16);
+$_medium-radius: g.func-rem(28);
+$_medium-padding: g.func-rem(14) g.func-rem(18);
+$_wrapper-icon-size: g.func-rem(24);
+
+%c-button {
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+  user-select: none;
+  outline: none !important;
+  width: 100%;
+}
+
+@mixin c-button--small--base {
+  @extend %c-button;
+
+  border-radius: $_small-radius;
+  padding: $_small-padding;
+
+  &--primary {
+    background: g.color-get-component(primary, 400);
+
+    &:hover {
+      background: g.color-get-component(primary, 600);
+    }
+  }
+
+  &--secondary {
+    background: g.color-get-component(gray, 50);
+  }
+
+  &--thirdly {
+    background: g.color-get-bg(white);
+    border: 1px solid g.color-get-component(primary, 400);
+  }
+
+  &[class$="--disabled"] {
+    background: g.color-get-component(black, 12);
+    cursor: not-allowed;
+  }
+}
+
+@mixin c-button--small($align: left) {
+  @include c-button--small--base;
+
+  &--primary {
+    @include g.font-style(12, bold);
+    @include c-button__text($align, g.color-get-component(white), g.color-get-component(white));
+  }
+
+  &--secondary {
+    @include g.font-style(12);
+    @include c-button__text($align, g.color-get-component(black, 87), g.color-get-component(black, 87));
+  }
+
+  &--thirdly {
+    @include g.font-style(12, bold);
+    @include c-button__text($align, g.color-get-component(primary, 400), g.color-get-component(primary, 400));
+  }
+
+  &[class$="--disabled"] {
+    @include c-button__text($align, g.color-get-component(black, 26));
+  }
+
+  .is-loading & {
+    height: g.func-rem(38);
+  }
+}
+
+@mixin c-button--small--forward($align: left) {
+  @include c-button--small($align);
+
+  position: relative;
+
+  &::after {
+    content: "";
+    height: $_wrapper-icon-size;
+    mask: url("../images/arrow-forward.svg") center / #{g.func-rem(8)} no-repeat;
+    position: absolute;
+    right: g.func-rem(8);
+    top: 50%;
+    transform: translateY(-50%);
+    width: $_wrapper-icon-size;
+  }
+
+  &--primary {
+    &::after {
+      background-color: g.color-get-icon(white);
+    }
+  }
+
+  &--secondary,
+  &[class$="--disabled"] {
+    &::after {
+      background-color: g.color-get-icon(black, 26);
+    }
+  }
+
+  &--thirdly {
+    &::after {
+      background-color: g.color-get-icon(primary, 400);
+    }
+  }
+}
+
+@mixin c-button--medium--base {
+  @extend %c-button;
+
+  background: g.color-get-component(black, 87);
+  border: 1px solid;
+  border-radius: $_medium-radius;
+  height: g.func-rem(52);
+  padding: $_medium-padding;
+
+  &--primary {
+    background: g.color-get-component(primary, 400);
+
+    &:hover {
+      background: g.color-get-component(primary, 600);
+    }
+  }
+
+  &--secondary {
+    background: g.color-get-component(white);
+
+    &:hover {
+      background: g.color-get-component(primary, 400);
+    }
+  }
+
+  &--critical {
+    background: g.color-get-component(critical, 600);
+
+    &:hover {
+      background: g.color-get-component(white);
+      border-color: g.color-get-component(critical, 600);
+    }
+  }
+
+  &--tel {
+    @include c-button__icon--tel;
+  }
+
+  &--chat {
+    @include c-button__icon--chat;
+  }
+
+  &[class$="--disabled"] {
+    cursor: not-allowed;
+
+    &,
+    &:hover {
+      background: g.color-get-component(white);
+    }
+  }
+
+  &--primary[class$="--disabled"] {
+    &,
+    &:hover {
+      background: g.color-get-component(black, 12);
+      border: none;
+    }
+  }
+}
+
+@mixin c-button--medium {
+  @include c-button--medium--base;
+  @include c-button__text(center, g.color-get-component(white), g.color-get-component(white));
+  @include g.font-style(16, bold);
+
+  &--secondary {
+    @include c-button__text(center, g.color-get-component(primary, 400), g.color-get-component(white));
+  }
+
+  &--critical {
+    @include c-button__text(center, g.color-get-component(white), g.color-get-component(critical, 600));
+  }
+
+  &[class$="--disabled"] {
+    @include c-button__text(center, g.color-get-component(black, 26), g.color-get-component(black, 26));
+  }
+}
+
+@mixin c-button--medium--forward {
+  @include c-button--medium;
+
+  position: relative;
+
+  &::after {
+    content: "";
+    height: $_wrapper-icon-size;
+    mask: url("../images/arrow-forward.svg") center / #{g.func-rem(8)} no-repeat;
+    position: absolute;
+    right: g.func-rem(8);
+    width: $_wrapper-icon-size;
+
+    @at-root .is-loading & {
+      content: none;
+    }
+  }
+
+  &--primary {
+    &::after {
+      background-color: g.color-get-icon(white);
+    }
+  }
+
+  &--secondary {
+    &:hover::after {
+      background-color: g.color-get-icon(white);
+    }
+
+    &::after {
+      background-color: g.color-get-icon(primary, 400);
+    }
+  }
+
+  &[class$="--disabled"] {
+    &::after {
+      background-color: g.color-get-icon(black, 26);
+    }
+  }
+}
+
+@mixin c-button__text($align, $color, $hover-color: null) {
+  text-align: $align;
+
+  &,
+  &:active,
+  &:visited {
+    color: $color;
+    text-decoration: none;
+  }
+
+  &:hover {
+    color: $hover-color;
+    text-decoration: none;
+  }
+}
+
+@mixin c-button__before-icon($icon, $icon-size-px, $w-px, $h-px: $w-px) {
+  font-size: clamp(g.func-rem(14), 4.375vw, g.func-rem(16));
+  position: relative;
+
+  &::before {
+    @include g.mix-size-wh($w-px, $h-px);
+
+    content: "";
+    display: block;
+    left: g.func-rem(16);
+    mask: url("../images/#{$icon}.svg") center / #{g.func-rem($icon-size-px)} no-repeat;
+    position: absolute;
+  }
+}
+
+@mixin c-button__before-icon-and-color($icon, $color, $hover-color) {
+  font-size: clamp(g.func-rem(14), 4.375vw, g.func-rem(16));
+  position: relative;
+
+  &:hover {
+    background: $hover-color;
+
+    &::after,
+    &::before {
+      background-color: $hover-color;
+    }
+  }
+
+  &::after,
+  &::before {
+    background-color: $color;
+  }
+
+  &::before {
+    content: "";
+    display: block;
+    height: $_wrapper-icon-size;
+    left: g.func-rem(16);
+    mask: url("../images/#{$icon}.svg") center / #{g.func-rem(24)} no-repeat;
+    position: absolute;
+    width: $_wrapper-icon-size;
+  }
+
+  &[class$="--disabled"]::after,
+  &[class$="--disabled"]::before {
+    background-color: g.color-get-icon(black, 26);
+  }
+}
+
+@mixin c-button__sns($icon, $hover-icon, $disabled-icon, $sns-color) {
+  @include c-button__text(center, $sns-color, g.color-get-component(white));
+
+  background: g.color-get-component(white);
+  font-size: clamp(g.func-rem(14), 4.375vw, g.func-rem(16));
+
+  &:hover {
+    background: $sns-color;
+
+    &::after {
+      background-color: g.color-get-icon(white);
+    }
+
+    &::before {
+      background-image: url("../images/#{$hover-icon}.svg");
+    }
+  }
+
+  &::after {
+    background-color: $sns-color;
+  }
+
+  &::before {
+    content: "";
+    background: url("../images/#{$icon}.svg") center / contain no-repeat;
+    display: block;
+    height: $_wrapper-icon-size;
+    left: g.func-rem(16);
+    position: absolute;
+    width: $_wrapper-icon-size;
+  }
+
+  &[class$="--disabled"]::before {
+    background-image: url("../images/#{$disabled-icon}.svg");
+  }
+}
+
+@mixin c-button__icon--tel {
+  @include c-button__before-icon("tel", 20, 24);
+}
+
+@mixin c-button__icon--chat {
+  @include c-button__text(center, g.color-get-component(white), g.color-get-component(tertiary, 800));
+  @include c-button__before-icon-and-color("chat", g.color-get-icon(white), g.color-get-component(tertiary, 800));
+}
+
+@mixin c-button--small--icon($icon, $icon-size-px: 20, $mask-size-px: 16) {
+  @include c-button--small(center);
+  @include c-button__text(center, g.color-get-component(white), g.color-get-component(primary, 400));
+  @include g.font-style(12, bold);
+
+  position: relative;
+  background-color: g.color-get-component(primary, 400);
+  border: 1px solid;
+  padding: g.func-rem(8) g.func-rem(12) g.func-rem(8) g.func-rem(12 + 4 + $icon-size-px);
+  width: fit-content;
+
+  &::before {
+    content: "";
+    width: g.func-rem($icon-size-px);
+    height: g.func-rem($icon-size-px);
+    background-color: g.color-get-icon(white);
+    mask: url("../images/#{$icon}.svg") center / #{g.func-rem($mask-size-px)} no-repeat;
+    position: absolute;
+    left: g.func-rem(12);
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &:hover {
+    background-color: g.color-get-component(white);
+
+    &::before {
+      background-color: g.color-get-icon(primary, 400);
+    }
+  }
+}
+
+@mixin c-button--small--lock {
+  @include c-button--small--icon("lock");
+}

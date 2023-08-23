@@ -1,0 +1,82 @@
+@use "../global" as g;
+@use "../component" as comp;
+
+.p-progress-bar {
+  height: g.func-rem(64);
+  background: g.color-get-bg(white);
+  padding-top: g.func-rem(8);
+
+  &__container {
+    position: relative;
+    padding: 0 g.func-rem(24);
+  }
+
+  &__line {
+    width: calc(100% - #{g.func-rem(96)});
+    height: g.func-rem(2);
+    position: absolute;
+    top: 0;
+    left: g.func-rem(48);
+    background-color: g.color-get-component(black, 26);
+  }
+
+  &__overlay-line {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 50%;
+    height: g.func-rem(2);
+    background-color: g.color-get-component(primary, 400);
+  }
+
+  &__items-list {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__item {
+    text-align: center;
+  }
+
+  &__text {
+    position: relative;
+    bottom: g.func-rem(4);
+
+    @include g.font-style(12, bold);
+
+    line-height: g.func-rem(12);
+
+    &--done {
+      color: g.color-get-component(primary, 400);
+    }
+
+    &--not-yet {
+      color: g.color-get-component(black, 26);
+    }
+  }
+
+  &__point {
+    width: g.func-rem(12);
+    height: g.func-rem(12);
+    margin: auto;
+    margin-bottom: g.func-rem(8);
+    position: relative;
+    bottom: g.func-rem(5);
+    border-radius: 50%;
+
+    &--done {
+      background-color: g.color-get-component(primary, 400);
+    }
+
+    &--not-yet {
+      background-color: g.color-get-component(black, 26);
+    }
+  }
+
+  @include g.mix-breakpoint(pc) {
+    &__container {
+      width: g.$var-container-width--pc;
+      margin: 0 auto;
+    }
+  }
+}

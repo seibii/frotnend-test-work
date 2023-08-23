@@ -1,0 +1,25 @@
+@use "color" as c;
+@use "function" as func;
+
+$header-height-mobile-px: 68;
+$header-height-pc-px: 120;
+$simple-header-height-pc-px: 80;
+$content-max-width-px: 984;
+$flash-height: func.rem(54);
+$flash-width--pc: func.rem(432);
+$heading-height: func.rem(56);
+$container-width--pc: func.rem(984);
+$container-padding-x--pc: func.rem(276);
+$link-palettes: (
+  default: (c.get-component(link, 600), none),
+  visited: (c.get-component(visited, 800), none),
+  hover: (c.get-component(link, 600), none),
+  active: (c.get-component(link, 600), none),
+  focus: (c.get-component(link, 600), none),
+);
+$normal-border: 1px solid c.get-border(black, 12);
+$loading-gradient-side: rgb(0 0 0 / 0%);
+$loading-gradient-center: rgb(0 0 0 / 12%);
+$shadow: 0 4px 8px c.get-component(black, 12);
+$shadow-hover: 0 2px 6px c.get-component(black, 12);
+$dialog-htmlbody-bg-color: rgb(100 104 104);

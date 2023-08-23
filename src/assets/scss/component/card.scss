@@ -1,0 +1,28 @@
+@use "../global" as g;
+
+@mixin c-card {
+  $_mix-height: g.func-rem(106);
+
+  background: g.color-get-component(gray, 50);
+  border-radius: g.func-rem(8);
+  min-height: $_mix-height;
+  padding: g.func-rem(16);
+  width: 100%;
+
+  a {
+    width: 100%;
+
+    &:hover {
+      cursor: pointer;
+      user-select: none;
+    }
+  }
+
+  &--shadow {
+    box-shadow: g.$var-shadow;
+
+    &:hover {
+      box-shadow: g.$var-shadow-hover;
+    }
+  }
+}

@@ -1,0 +1,38 @@
+@use "../global" as g;
+
+@mixin c-icon($url, $w-px, $h-px, $color: null) {
+  @if $color {
+    background-color: $color;
+    mask: url($url) center / contain no-repeat;
+  } @else {
+    background: url($url) center / contain no-repeat;
+  }
+
+  display: block;
+  height: g.func-rem($h-px);
+  width: g.func-rem($w-px);
+}
+
+@mixin c-icon__pseudo($pos, $url, $w-px, $h-px, $color: null) {
+  position: relative;
+  &::#{$pos} {
+    @include c-icon($url, $w-px, $h-px, $color);
+
+    content: "";
+    position: absolute;
+    @content;
+  }
+}
+
+@mixin c-icon__pseudo--forward($right: 0) {
+  @include c-icon__pseudo(
+                  after,
+                  "../images/arrow-forward.svg",
+                  14,
+                  14,
+                  g.color-get-icon(black, 26)) {
+    right: $right;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}

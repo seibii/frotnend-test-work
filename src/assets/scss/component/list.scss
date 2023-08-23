@@ -1,0 +1,12 @@
+@use "sass:math";
+@use "../global" as g;
+
+@mixin c-list {
+  &__item {
+    margin-bottom: g.func-rem(16);
+
+    p {
+      overflow-wrap: break-word;
+    }
+  }
+}

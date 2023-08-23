@@ -1,0 +1,30 @@
+@use "function" as func;
+
+@font-face {
+  font-family: Arial;
+  src: local("Arial");
+  unicode-range: U+0030-0039;
+}
+
+@mixin weight($weight: normal) {
+  $_hiragino-font: "Hiragino Kaku Gothic ProN";
+  $_ios-font-family: if($weight == bold, "#{$_hiragino-font} W6", "#{$_hiragino-font} W3");
+
+  font-family: Arial, $_ios-font-family, "Noto Sans CJK JP", YuGothic, sans-serif;
+  font-weight: $weight;
+}
+
+@mixin style($font-size-px, $weight: normal) {
+  $_line-height-px: if($font-size-px > 10, $font-size-px + 8, 10);
+
+  @include weight($weight);
+
+  font-size: func.rem($font-size-px);
+  line-height: func.rem($_line-height-px);
+}
+
+@mixin base($weight: normal) {
+  @include style(14, $weight);
+
+  letter-spacing: 0;
+}

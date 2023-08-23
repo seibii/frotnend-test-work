@@ -1,0 +1,108 @@
+@use "../global" as g;
+@use "../component" as comp;
+
+.p-service-card-list {
+  @include comp.c-list;
+
+  &__item--pc {
+    display: none;
+  }
+
+  @include g.mix-breakpoint(pc) {
+    &__item--pc {
+      display: block;
+    }
+  }
+}
+
+.p-service-card {
+  $this: &;
+  $_image-size: g.func-rem(108);
+  $_button-size-px: 18;
+  $_button-size: g.func-rem($_button-size-px);
+
+  @include comp.c-card;
+
+  background: g.color-get-component(white);
+  height: g.func-rem(124);
+  padding: g.func-rem(8);
+  position: relative;
+
+  &--gray {
+    background: g.color-get-component(gray, 50);
+
+    @at-root .is-loading & {
+      #{$this}__image,
+      #{$this}__title,
+      #{$this}__price {
+        background: g.color-get-component(white);
+      }
+    }
+  }
+
+  @at-root .is-loading & {
+    &__content {
+      float: right;
+      margin: g.func-rem(10) g.func-rem(8) g.func-rem(10) g.func-rem(16);
+      width: calc(100% - $_image-size - g.func-rem(16) - g.func-rem(8));
+
+      &::after {
+        content: "";
+        clear: right;
+      }
+    }
+  }
+
+  &__grid {
+    display: grid;
+    gap: g.func-rem(4) g.func-rem(16);
+    grid-template-areas:
+      "card-image card-title card-button"
+      "card-image card-price card-button";
+    grid-template-columns: $_image-size 1fr $_button-size;
+    grid-template-rows: 1fr auto;
+  }
+
+  &__image {
+    border-radius: g.func-rem(8);
+    grid-area: card-image;
+    height: $_image-size;
+    object-fit: cover;
+    width: $_image-size;
+
+    &--no-image {
+      background: g.color-get-component(white);
+      object-fit: contain;
+      padding: g.func-rem(16);
+    }
+  }
+
+  &__title {
+    @include g.font-style(14, bold);
+
+    grid-area: card-title;
+    overflow: hidden;
+    padding-top: g.func-rem(8);
+    text-overflow: ellipsis;
+
+    @supports (-webkit-line-clamp: 3) {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+    }
+  }
+
+  &__price {
+    @include g.font-style(14, bold);
+
+    color: g.color-get-component(primary, 400);
+    grid-area: card-price;
+    padding-bottom: g.func-rem(8);
+  }
+
+  @include g.mix-breakpoint(pc) {
+    &__title {
+      margin-top: g.func-rem(8);
+    }
+  }
+}

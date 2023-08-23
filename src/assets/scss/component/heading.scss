@@ -1,0 +1,13 @@
+@use "../global" as g;
+
+@mixin c-heading {
+  $_padding: g.func-rem(16) g.func-rem(24);
+
+  @include g.font-style(16, bold);
+
+  background: g.color-get-bg(white);
+  height: g.$var-heading-height;
+  padding: $_padding;
+  text-align: center;
+  width: 100%;
+}

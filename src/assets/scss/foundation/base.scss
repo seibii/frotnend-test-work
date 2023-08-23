@@ -1,0 +1,68 @@
+@use "sass:list";
+@use "../global" as g;
+
+html {
+  font-size: 16px;
+}
+
+body {
+  @include g.font-base;
+
+  background: g.color-get-bg(gray, 100);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  height: 100%;
+  width: 100%;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+a {
+  @each $state, $palette in g.$var-link-palettes {
+    $text-color: list.nth($palette, 1);
+    $text-decoration: list.nth($palette, 2);
+
+    @if $state == default {
+      color: $text-color;
+      text-decoration: $text-decoration;
+    } @else {
+      &:#{$state} {
+        color: $text-color;
+        text-decoration: $text-decoration;
+      }
+    }
+  }
+}
+
+b,
+strong {
+  @include g.font-weight(bold);
+}
+
+:root {
+  --z-index-channel-talk-button: 10;
+  --z-index-header: 100;
+  --z-index-flash: 101;
+  --z-index-loading: 1000;
+  --z-index-dialog-overlay: 1000;
+  --z-index-footer: 100;
+}
+
+_::-webkit-full-page-media,
+_:future,
+:root {
+  html {
+    height: fill-available;
+  }
+
+  body {
+    min-height: 100vh;
+    min-height: fill-available;
+  }
+}

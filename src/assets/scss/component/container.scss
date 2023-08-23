@@ -1,0 +1,20 @@
+@use "../global" as g;
+
+$_margin--sp: g.func-rem(8) auto;
+$_margin--pc: g.func-rem(20) auto;
+$_padding-y: g.func-rem(32);
+$_padding--sp: $_padding-y g.func-rem(24);
+$_padding--pc: $_padding-y g.$var-container-padding-x--pc;
+
+@mixin c-container {
+  background: g.color-get-bg(white);
+  margin: $_margin--sp;
+  padding: $_padding--sp;
+  width: 100%;
+
+  @include g.mix-breakpoint(pc) {
+    margin: $_margin--pc;
+    padding: $_padding--pc;
+    width: g.$var-container-width--pc;
+  }
+}
