@@ -1,9 +1,9 @@
-import { useState } from 'react'
-import reactLogo from './assets/images/react.svg'
+import React, { useState } from 'react'
+import reactLogo from '../../assets/images/react.svg'
 import viteLogo from '/vite.svg'
-import './assets/scss/App.scss'
+import '../../assets/scss/app.scss'
 
-function App() {
+export const Top: React.FC = () => {
   const [count, setCount] = useState(0)
 
   return (
@@ -31,5 +31,3 @@ function App() {
     </>
   )
 }
-
-export default App
