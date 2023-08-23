@@ -1,30 +1,27 @@
 # frontend-test-work
 
-Seibiiのエンジニア選考フロー内の事前課題で使用するコードです。
+Seibiiのエンジニア選考フロー内で使用するリポジトリです。
 課題の内容は選考時の案内に従ってください。
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 依存関係
+下記をインストールしてください。
+- node 19.2.0
+  - nodenvを使用している場合は `nodenv install 19.2.0` してください。
+- yarn 1系
+  - `npm install -g yarn` でインストール可能です。
 
-Currently, two official plugins are available:
+## 開発用サーバの起動
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+```bash
+$ yarn install
+$ yarn dev
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+したあとに
+
+http://localhost:5173/
+
+をブラウザで開いてください。
+
+課題対象のページは別のパスのことがあります。
+選考時の案内を優先してください。
