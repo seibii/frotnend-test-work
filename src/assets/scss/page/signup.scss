@@ -1,0 +1,328 @@
+@use "sass:list";
+@use "../global" as g;
+@use "../component" as comp;
+
+.pg-signup {
+  &__heading {
+    @include comp.c-heading;
+  }
+
+  &__container {
+    @include comp.c-container;
+
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  &__lead-text {
+    margin-bottom: g.func-rem(24);
+  }
+
+  &__login-button {
+    @include comp.c-button--small--forward;
+
+    width: unset;
+    padding: g.func-rem(8) g.func-rem(36) g.func-rem(8) g.func-rem(16);
+    margin-right: 0;
+  }
+
+  .p-service-card-list {
+    margin-bottom: g.func-rem(24);
+  }
+
+  &__footer {
+    margin: 0 auto g.func-rem(24);
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__signup-title {
+    @include g.font-style(18, bold);
+
+    padding-left: g.func-rem(8);
+    border-left: 4px solid g.color-get-component(primary, 400);
+  }
+
+  &__signup-description {
+    margin-top: g.func-rem(12);
+    margin-bottom: g.func-rem(8);
+    padding: g.func-rem(12);
+    padding-bottom: 0;
+    border-top: g.$var-normal-border;
+    border-right: g.$var-normal-border;
+    border-left: g.$var-normal-border;
+    border-radius: g.func-rem(8) g.func-rem(8) 0 0;
+
+    &__header {
+      @include g.font-style(14, bold);
+
+      margin-top: g.func-rem(4);
+    }
+
+    ul {
+      margin-top: g.func-rem(8);
+    }
+
+    li {
+      margin-left: g.func-rem(8);
+      padding-left: g.func-rem(24);
+      line-height: g.func-rem(32);
+
+      @include comp.c-icon__pseudo(
+                      before,
+                      "../images/checkmark_rounded.svg",
+                      16,
+                      16,
+                      g.color-get-icon(primary, 400)
+      ) {
+        color: transparent;
+        left: 0%;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+  }
+
+  @include g.mix-breakpoint(pc) {
+    &__container {
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+  }
+}
+
+.pg-registration-reserve-wrapper {
+  .l-main {
+    padding-bottom: 0;
+  }
+
+  .auth-lock {
+    background: g.color-get-bg(white);
+    padding: 0 g.func-rem(24) g.func-rem(32);
+    margin-top: g.func-rem(-8);
+
+
+    .auth-lock-social-buttons-container {
+      padding: g.func-rem(12) g.func-rem(12) g.func-rem(12);
+      border-bottom: g.$var-normal-border;
+      border-right: g.$var-normal-border;
+      border-left: g.$var-normal-border;
+      border-radius: 0 0 g.func-rem(8) g.func-rem(8);
+    }
+
+    .auth-lock-social-button {
+      $this: '.auth-lock-social-button';
+
+      margin-top: 0;
+      width: 100%;
+      height: g.func-rem(52);
+      border-radius: g.func-rem(8);
+      color: g.color-get-component(white);
+      position: relative;
+
+      &-icon {
+        @include g.mix-size-wh(40);
+
+        box-sizing: content-box;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-repeat: no-repeat;
+        background-size: 50%;
+        background-position: center center;
+        margin: g.func-rem(6);
+      }
+
+      &-text {
+        @include g.font-style(14, bold);
+      }
+
+      &[data-provider="line"] {
+        background-color: #00b900;
+
+        #{$this}-icon {
+          background-image: url("../images/line_icon.svg");
+        }
+      }
+    }
+
+    .auth-lock-pane-separator {
+      margin: g.func-rem(36) 0;
+      color: g.color-get-component(black, 56);
+      text-align: center;
+    }
+
+    .auth-lock-input-email,
+    .auth-lock-input-checkbox {
+      margin-bottom: g.func-rem(24);
+      padding-top: g.func-rem(40);
+      position: relative;
+
+      &::after,
+      &::before {
+        position: absolute;
+        top: 0;
+      }
+
+      &::after {
+        @include g.font-style(16, bold);
+
+        left: g.func-rem(44);
+      }
+
+      &::before {
+        @include g.font-style(12, bold);
+
+        background: g.color-get-component(critical, 600);
+        border-radius: g.func-rem(4);
+        color: g.color-get-component(white);
+        content: "必須";
+        display: block;
+        left: 0;
+        padding: g.func-rem(3) g.func-rem(6);
+      }
+    }
+
+    .auth-lock-input-email::after {
+      content: "メールアドレス";
+    }
+
+    .auth-lock-input-checkbox {
+      margin-bottom: g.func-rem(60);
+      color: g.color-get-component(black, 56);
+
+      &::before {
+        background: g.color-get-component(black, 26);
+        content: "任意";
+      }
+
+      &::after {
+        content: "メルマガや郵送物の受け取り設定";
+        color: g.color-get-component(black, 87);
+      }
+
+      & > label {
+        width: 100%;
+        border: g.$var-normal-border;
+        border-radius: g.func-rem(8);
+        display: flex;
+        padding: g.func-rem(8) g.func-rem(16);
+        position: relative;
+        align-items: center;
+
+        &:hover {
+          cursor: pointer;
+          user-select: none;
+        }
+
+        &::after {
+          @include g.font-weight(normal);
+
+          font-size: g.func-rem(12);
+          position: absolute;
+          bottom: g.func-rem(-50);
+          left: 0;
+          content: "※「受け取らない」と設定された場合でも、お支払い方法によっては郵送で請求書をお送りする場合があります。";
+        }
+
+        & > input {
+          margin: 0 !important;
+          transform: scale(1.5, 1.5);
+        }
+
+        & > span {
+          @include g.font-weight(normal);
+
+          flex: 1;
+          color: g.color-get-component(black, 87);
+          margin-left: g.func-rem(16);
+        }
+      }
+    }
+
+    $_bg-color: g.color-get-component(gray, 50);
+
+    .auth-lock-input-wrap,
+    .auth-lock-input {
+      background: $_bg-color;
+    }
+
+    .auth-lock-input {
+      border: g.func-rem(2) solid $_bg-color;
+      border-radius: g.func-rem(4);
+      font-size: g.func-rem(16);
+      padding: g.func-rem(16);
+
+      &:focus {
+        border-color: g.color-get-component(primary, 400);
+      }
+
+      &::placeholder {
+        color: g.color-get-component(black, 26);
+      }
+    }
+
+    .auth-lock-terms {
+      padding: g.func-rem(12) 0;
+      color: g.color-get-component(black, 87);
+      font-size: g.func-rem(14);
+      margin-bottom: g.func-rem(20);
+      text-align: left;
+      display: block;
+
+      a {
+        @each $state, $palette in g.$var-link-palettes {
+          $text-color: list.nth($palette, 1);
+          $text-decoration: list.nth($palette, 2);
+
+          @if $state == default {
+            color: $text-color;
+            text-decoration: $text-decoration;
+          } @else {
+            &:#{$state} {
+              color: $text-color;
+              text-decoration: $text-decoration;
+            }
+          }
+        }
+      }
+    }
+
+    .auth-lock-submit {
+      @include comp.c-button--medium--forward;
+    }
+
+    @include g.mix-breakpoint(pc) {
+      width: g.func-rem(984);
+      margin: g.func-rem(-8) auto 0;
+      border-right: g.func-rem(252) solid g.color-get-component(white);
+      border-left: g.func-rem(252) solid g.color-get-component(white);
+
+      .auth-lock-widget {
+        margin-bottom: g.func-rem(24);
+        padding-left: g.func-rem(242);
+        padding-right: g.func-rem(242);
+      }
+
+      .auth-lock-widget-container {
+        padding-left: g.func-rem(34) !important;
+        padding-right: g.func-rem(34) !important;
+      }
+
+      .auth-lock-social-buttons-container {
+        margin-top: unset !important;
+      }
+
+      .auth-lock-terms {
+        margin: auto;
+      }
+
+      .auth-lock-input-checkbox > label > input {
+        transform: scale(1.2, 1.2);
+      }
+    }
+  }
+}
