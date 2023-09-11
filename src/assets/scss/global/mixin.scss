@@ -2,19 +2,19 @@
 
 @mixin breakpoint($device) {
   @if $device == se {
-    @media (max-width: 376px) {
+    @media (width <= 376px) {
       @content;
     }
   }
 
   @if $device == tablet {
-    @media (min-width: 768px) {
+    @media (width >= 768px) {
       @content;
     }
   }
 
   @if $device == pc {
-    @media (min-width: 1024px) {
+    @media (width >= 1024px) {
       @content;
     }
   }
