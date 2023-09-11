@@ -1,9 +1,9 @@
-import { SelectedMaintenance } from "@/types/maintenance";
+import { SelectedMaintenance } from '@/types/maintenance';
 
 type UseQueryResult<T> = {
-  isFetched: boolean
-  data: T
-}
+  isFetched: boolean;
+  data: T;
+};
 
 // 本来はAPI呼び出す実装ですが課題用コードなのでmock返す
 export const useSelectedMaintenancesQuery = (): UseQueryResult<SelectedMaintenance[]> => ({
@@ -29,4 +29,4 @@ export const useSelectedMaintenancesQuery = (): UseQueryResult<SelectedMaintenan
       ]
     }
   ]
-})
+});

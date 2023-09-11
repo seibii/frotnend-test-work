@@ -1,4 +1,4 @@
-import { notEmpty } from "@/utilities/extensions";
+import { notEmpty } from '@/utilities/extensions';
 
 export type Maintenance = {
   id: number;

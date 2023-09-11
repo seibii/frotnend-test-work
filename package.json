@@ -2,12 +2,11 @@
   "name": "frontend-test-work",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint ./src --ext ts,tsx --report-unused-disable-directives --max-warnings 0 && stylelint 'src/assets/scss/**/*.scss'",
-    "lint:fix": "eslint ./src --fix --ext ts,tsx --report-unused-disable-directives --max-warnings 0 && stylelint 'src/assets/scss/**/*.scss' --fix",
+    "lint:fix": "eslint ./src --fix --ext ts,tsx --report-unused-disable-directives --max-warnings 0 && prettier --write './src/**/*.{ts,tsx}' && stylelint 'src/assets/scss/**/*.scss' --fix",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -24,8 +23,10 @@
     "@typescript-eslint/parser": "^6.0.0",
     "@vitejs/plugin-react": "^4.0.3",
     "eslint": "^8.45.0",
+    "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
+    "prettier": "^3.0.3",
     "stylelint": "^15.10.3",
     "stylelint-config-standard-scss": "^11.0.0",
     "typescript": "^5.0.2",
