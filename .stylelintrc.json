@@ -1,0 +1,13 @@
+{
+  "extends": "stylelint-config-standard-scss",
+  "rules": {
+    "scss/dollar-variable-pattern": "^[a-z_][a-zA-Z\\-]+$",
+    "selector-class-pattern": "^[a-z][a-z\\_\\-]+$",
+    "selector-id-pattern": "^[a-z][a-zA-Z]+$",
+    "no-descending-specificity": null,
+    "scss/at-mixin-pattern": "^[a-z][a-zA-Z\\_\\-]+$",
+    "selector-type-no-unknown": null,
+    "declaration-block-no-redundant-longhand-properties": null,
+    "scss/double-slash-comment-whitespace-inside": null
+  }
+}

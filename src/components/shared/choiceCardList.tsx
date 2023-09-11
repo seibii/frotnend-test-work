@@ -1,8 +1,8 @@
 import logo_seibii_icon from '@/assets/images/seibii_icon.svg';
 import { SelectedMaintenance, selectedName, selectedPrice } from '@/types/maintenance';
 import React from 'react';
-import { prettyPrice } from "@/utilities/viewHelper";
-import { bem } from "@/utilities/bem";
+import { prettyPrice } from '@/utilities/viewHelper';
+import { bem } from '@/utilities/bem';
 
 type Props = {
   name: string;
@@ -11,10 +11,7 @@ type Props = {
 };
 
 export const ChoiceCardView: React.FC<{ selectedMaintenance: SelectedMaintenance }> = ({ selectedMaintenance }) => (
-  <ServiceCardListItem
-    name={selectedName(selectedMaintenance)}
-    price={selectedPrice(selectedMaintenance)}
-  />
+  <ServiceCardListItem name={selectedName(selectedMaintenance)} price={selectedPrice(selectedMaintenance)} />
 );
 
 const ServiceCardListItem: React.FC<Props> = (props) => {
